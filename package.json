@@ -4,7 +4,9 @@
   "description": "Web App to view pics in localstorage",
   "main": "index.js",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node bin/www",
+    "develop": "node node_modules/nodemon/bin/nodemon.js bin/www",
+    "webpack": "node node_modules/webpack/bin/webpack.js"
   },
   "repository": {
     "type": "git",
@@ -20,18 +22,34 @@
   },
   "homepage": "https://github.com/Eskibear/picbrowser#readme",
   "dependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "body-parser": "~1.15.1",
     "cookie-parser": "~1.4.3",
+    "css-loader": "^0.25.0",
     "debug": "~2.2.0",
+    "ejs": "^2.5.2",
     "express": "~4.13.4",
-    "express-react-views": "^0.10.2",
+    "fs": "0.0.1-security",
     "jade": "~1.11.0",
+    "jsx-loader": "^0.13.2",
     "morgan": "~1.7.0",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.3",
     "react-dom": "^15.3.2",
-    "serve-favicon": "~2.3.0"
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0",
+    "serve-favicon": "~2.3.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "whatwg-fetch": "^1.0.0"
+  },
+  "devDependencies": {
+    "css-loader": "^0.25.0",
+    "gulp": "^3.9.1",
+    "memory-fs": "^0.3.0",
+    "style-loader": "^0.13.1"
   }
 }
