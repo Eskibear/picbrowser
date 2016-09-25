@@ -1,3 +1,4 @@
+import ES6Promise from 'es6-promise';
 import React from 'react';
 import ReactDom from 'react-dom';
 import Header from './components/Header';
@@ -7,7 +8,7 @@ import MainContainer from './containers/MainContainer';
 import Store from './store';
 import { retrieveDirInfo } from './utils/retrieve';
 import config from '../config';
-
+ES6Promise.polyfill();
 
 ReactDom.render(
   <Header />,

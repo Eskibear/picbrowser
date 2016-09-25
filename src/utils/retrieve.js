@@ -1,4 +1,4 @@
-import path from 'path';
+import 'whatwg-fetch';
 import { initialize } from '../actions';
 import Store from '../store';
 
