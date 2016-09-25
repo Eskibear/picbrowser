@@ -1,3 +1,4 @@
+var compression = require('compression');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -9,12 +10,23 @@ var utils = require('./server/utils');
 var config = require('./config.js');
 
 var app = express();
-
-
+app.use(compression());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 app.engine('html', ejs.renderFile);
+
+//limit ips
+app.use(function(req, res, next) {
+  const ip = req.ip || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
+  console.log(ip);
+  if (config.allowedIps.indexOf(ip) < 0) {
+    res.statusCode = 401;
+    res.end('Unauthorized');
+  } else {
+    next();
+  }
+});
 
 //router
 app.get('/', (req, res) => {
@@ -30,6 +42,7 @@ app.get('/retrieve', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify(state));
   });
+
 
 
 app.use(favicon(path.join(__dirname, 'static', 'img', 'favicon.ico')));

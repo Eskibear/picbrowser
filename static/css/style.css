@@ -59,7 +59,7 @@ button#pic-selector{
 }
 
 ul.dropdown-menu, div.list-group {
-  max-height: 800px;
+  max-height: 500px;
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -80,8 +80,8 @@ button.control-btn{
   position:absolute;
   top:0;
   height: 100%;
-  width: 14%;
-  font-size: 200px;
+  width: 150px;
+  font-size: 150px;
   opacity: 0;
 }
 button.control-btn:hover{
