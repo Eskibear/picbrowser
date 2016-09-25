@@ -3,9 +3,10 @@ import ReactDom from 'react-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { Provider } from 'react-redux';
-import App from './containers/App';
+import MainContainer from './containers/MainContainer';
 import Store from './store';
 import { retrieveDirInfo } from './utils/retrieve';
+import config from '../config';
 
 
 ReactDom.render(
@@ -13,11 +14,20 @@ ReactDom.render(
   document.querySelector('header')
 );
 
-retrieveDirInfo('', '.');
+try {
+  const state = JSON.parse(localStorage.currentState);
+  retrieveDirInfo(state.baseMap, state.curDir);
+}
+catch (err){
+  console.error(err);
+  console.error(err.stack);
+  retrieveDirInfo(config.defaultMap, '/');
+}
+
 
 ReactDom.render(
   <Provider store={Store.store}>
-    <App />
+    <MainContainer />
   </Provider>,
   document.getElementById('main-container')
 );

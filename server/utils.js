@@ -14,10 +14,10 @@ function isPic(filename){
   }
 }
 
-function listFiles(relativePath){
-  console.log(`listFiles: ${relativePath}`);
-  const absolutePath = path.join(config.storageBasePath, decodeURIComponent(relativePath));
-  // console.log(curDir);
+function listFiles(baseMapRaw, relativePath){
+  const baseMap = JSON.parse(decodeURIComponent(baseMapRaw));
+  const absolutePath = path.join(baseMap.realBase, decodeURIComponent(relativePath));
+
   if (!absolutePath){
     return {}
   }
@@ -40,7 +40,8 @@ function listFiles(relativePath){
   });
 
   return {
-    curIndex: 0,
+    baseMap,
+    curIndex: picList.length > 0 ? 0 : -1,
     curDir: relativePath,
     picList,
     dirList

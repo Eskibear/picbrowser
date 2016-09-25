@@ -5,7 +5,7 @@ import webpackConfig from './webpack.config';
 
 gulp.task('webpack', function (callback) {
   webpack(webpackConfig, function (err, stats) {
-    console.log(err);
+    console.error(err);
     callback();
   });
 });

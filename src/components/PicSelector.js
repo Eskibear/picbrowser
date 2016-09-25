@@ -6,8 +6,8 @@ class PicSelector extends React.Component {
   render() {
     const { curIndex, picList, dispatch} = this.props;
     return (
-      <div>
-        <label>{`${curIndex+1} / ${picList.length}`}</label>
+      <div className="pic-selector-zone">
+        <p>{`${curIndex+1} / ${picList.length}`}</p>
         <DropdownButton bsStyle="default" title={picList[curIndex]||'PicSelector'} id="pic-selector">
           {picList.map((pic, index)=>(
             <MenuItem

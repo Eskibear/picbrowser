@@ -4,16 +4,14 @@ import { connect } from 'react-redux';
 import PicZone from '../components/PicZone';
 import ControlPanel from '../components/ControlPanel';
 
-class App extends React.Component {
+class MainContainer extends React.Component {
   render() {
-    const { curIndex, curDir, picList, dirList } = this.props;
-    console.log(this.props);
     return (
       <div>
-        <Col xs={15} md={10}>
+        <Col xs={15} md={10} className="left-zone no-padding">
           <PicZone {...this.props} id="pic-zone"/>
         </Col>
-        <Col xs={3} md={2}>
+        <Col xs={3} md={2} className="right-zone no-padding">
           <ControlPanel {...this.props} id="control-panel"/>
         </Col>
       </div>
@@ -22,8 +20,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
+    baseMap: state.defaultReducer.baseMap,
     curIndex: state.defaultReducer.curIndex,
     curDir: state.defaultReducer.curDir,
     picList: state.defaultReducer.picList,
@@ -31,4 +29,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(MainContainer);

@@ -6,14 +6,14 @@ import { retrieveDirInfo } from '../utils/retrieve';
 
 class DirectoryList extends React.Component {
   render() {
-    const { curDir, dirList, dispatch} = this.props;
+    const { curDir, dirList, baseMap } = this.props;
     return (
       <ListGroup>
         <label>{curDir}</label>
         {dirList.map((dir, index)=>(
           <ListGroupItem
             key={`dir-${index}`}
-            onClick={() => {retrieveDirInfo(curDir, dir);}}>
+            onClick={() => {retrieveDirInfo(baseMap, path.join(curDir, dir));}}>
             {dir}
           </ListGroupItem>
         ))}

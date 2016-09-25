@@ -6,12 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var ejs = require('ejs');
 var utils = require('./server/utils');
-/*
- * config.js
- * module.exports = {
- *   storageBasePath: <local storage path>
- * }
- */
 var config = require('./config.js');
 
 var app = express();
@@ -26,22 +20,29 @@ app.engine('html', ejs.renderFile);
 app.get('/', (req, res) => {
   res.render('index');
 });
+app.get('/about', (req, res) => {
+  res.render('about');
+});
+
 
 app.get('/retrieve', (req, res) => {
-  // console.log(req);
-  const state = utils.listFiles(req.query.filename);
+  const state = utils.listFiles(req.query.basemap, req.query.filename);
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify(state));
   });
 
 
-// app.use(favicon(path.join(__dirname, 'src', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'static', 'img', 'favicon.ico')));
 // app.use(logger('dev'));
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'static')));
-app.use('/storage', express.static(path.join(config.storageBasePath, '.')));
+
+//auto map static entry using config.js
+config.availableMaps.forEach(function(entry){
+  app.use(entry.virtualBase, express.static(path.join(entry.realBase, '.')));
+});
 
 
 

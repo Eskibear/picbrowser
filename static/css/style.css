@@ -1,39 +1,95 @@
 @import "vendor/bootstrap.min.css";
 @import "config/constans.css";
 
+header nav.navbar {
+  margin-bottom: 1px;
+  border-radius: 0;
+}
 body {
   width: 100%;
   overflow: hidden;
   color: red;
-  border: solid blue 1px;
+  /*border: solid blue 1px;*/
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   word-break: break-all;
   word-wrap: break-word;
 }
-footer {
-  position: fixed;
-  height: 50px;
-  bottom: 0;
-  width: 100%;
-}
-div {
-  /*border: solid black 1px !important;*/
-}
-div.main {
+
+div.main-container {
   height: 100%
 }
+
 footer {
+  position: fixed;
+  height:38px;
+  bottom: 0;
+  width: 100%;
   text-align: center;
-  background: yellow;
-  border: solid blue 1px;
+  background: lightgray;
+  /*border: solid blue 1px;*/
 }
-div.pic-zone>img.bi-responsive {
+
+div {
+  /*border: solid blue 1px;*/
+}
+
+.no-padding {
+  padding: 0;
+}
+div.pic-zone {
+  height: 900px;
+  overflow-y: scroll;
+}
+div.pic-zone > img.bi-responsive {
   display: block;
-  max-width: 100%;
-  max-height: 800px;
+  width: 100%;
 }
+
+div.map-selector-zone,
+div.pic-selector-zone{
+  padding: 20px 20px 20px 20px;
+  border-bottom: solid 1px darkgray;
+  text-align: center;
+}
+
+button#map-selector,
+button#pic-selector{
+  width: 160px;
+  overflow: hidden;
+}
+
 ul.dropdown-menu, div.list-group {
   max-height: 800px;
   overflow-x: hidden;
   overflow-y: scroll;
+}
+div.dropdown ul.dropdown-menu {
+  float: right;
+  right: 0;
+  left: auto;
+}
+
+div.pic-zone>div{
+  height: 100%;
+  width: 100%;
+}
+
+
+
+button.control-btn{
+  position:absolute;
+  top:0;
+  height: 100%;
+  width: 30%;
+  font-size: 200px;
+  opacity: 0;
+}
+button.control-btn:hover{
+  opacity: 0.5;
+}
+button.control-btn-prev{
+  left:0;
+}
+button.control-btn-next{
+  right:16px;
 }

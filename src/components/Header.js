@@ -7,7 +7,7 @@ class Header extends React.Component {
       <Navbar inverse>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">Online Pic Browser</a>
+            <a href="/">Online Pic Browser</a>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>

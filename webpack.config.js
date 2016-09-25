@@ -3,14 +3,15 @@ var path = require('path');
 
 var ROOT_PATH = path.resolve(__dirname);
 var BUILD_PATH = path.resolve(__dirname, './static');
-var JS_PATH = path.resolve(ROOT_PATH, './src/index.js');
+
 module.exports = {
   entry : {
-    'bundle': JS_PATH,
+    'index': path.resolve(ROOT_PATH, './src/index.js'),
+    'about': path.resolve(ROOT_PATH, './src/about.js')
   },
   output : {
     path : BUILD_PATH,
-    filename : 'bundle.js'
+    filename : '[name].js'
   },
   module: {
     loaders: [
@@ -22,21 +23,19 @@ module.exports = {
           presets: ['es2015', 'react']
         }
       }]
-  }
-  // ,
-  // 其他解决方案配置
-  // resolve: {
-  //   extensions: ['', '.js', '.jsx', '.css', '.json'],
-  // },
-  // // 插件项
-  // plugins : [
-  //   new webpack.optimize.UglifyJsPlugin({
-  //     compress: {
-  //       warnings: false,
-  //     },
-  //     output: {
-  //       comments: false,
-  //     },
-  //   }),
-  // ]
+  },
+  devtool: 'source-map',
+  plugins : [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+      output: {
+        comments: false,
+      },
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
+    }),
+  ]
 };
