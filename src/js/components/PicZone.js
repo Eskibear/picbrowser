@@ -42,10 +42,9 @@ class PicZone extends React.Component {
       );
     }
     else {
-      content = <div className="pic-zone"><Image
-        src="img/yukata.jpg"
-        className="bi-responsive"
-      /></div>;
+      content = <div className="pic-zone">
+        <p>No picture found in this folder.</p>
+      </div>;
     }
     return content;
   }

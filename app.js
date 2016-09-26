@@ -12,7 +12,7 @@ var config = require('./config.js');
 var app = express();
 app.use(compression());
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'dist'));
 app.set('view engine', 'html');
 app.engine('html', ejs.renderFile);
 
@@ -45,14 +45,14 @@ app.get('/retrieve', (req, res) => {
 
 
 
-app.use(favicon(path.join(__dirname, 'static', 'img', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
 // app.use(logger('dev'));
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
-//auto map static entry using config.js
+//auto map dist entry using config.js
 config.availableMaps.forEach(function(entry){
   app.use(entry.virtualBase, express.static(path.join(entry.realBase, '.')));
 });
@@ -81,10 +81,10 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  res.send(JSON.stringify({
     message: err.message,
-    error: {}
-  });
+    error: err.stack
+  }));
 });
 
 module.exports = app;

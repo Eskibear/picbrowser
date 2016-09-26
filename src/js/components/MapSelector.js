@@ -1,7 +1,7 @@
 import React from 'react';
 import { DropdownButton, MenuItem } from 'react-bootstrap/lib';
 import { switchMap } from '../actions';
-import config from '../../config';
+import config from '../../../config';
 import { retrieveDirInfo } from '../utils/retrieve';
 
 class MapSelector extends React.Component {

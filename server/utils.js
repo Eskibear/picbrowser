@@ -3,15 +3,8 @@ var path = require('path');
 var config = require('../config');
 
 function isPic(filename){
-  if (filename.endsWith('.jpg')
-    ||filename.endsWith('.jpeg')
-    ||filename.endsWith('.png')
-    ||filename.endsWith('.gif')) {
-    return true;
-  }
-  else {
-    return false;
-  }
+  const re = /\.(jpe?g|png|gif|svg)$/i;
+  return re.test(filename);
 }
 
 function listFiles(baseMapRaw, relativePath){
@@ -35,7 +28,6 @@ function listFiles(baseMapRaw, relativePath){
     }catch (err) {
       console.error(err);
       console.error(err.stack);
-
     }
   });
 
@@ -48,6 +40,4 @@ function listFiles(baseMapRaw, relativePath){
   };
 }
 
-module.exports = {
-  listFiles
-};
+module.exports = { listFiles };

@@ -7,7 +7,8 @@ import { Provider } from 'react-redux';
 import MainContainer from './containers/MainContainer';
 import Store from './store';
 import { retrieveDirInfo } from './utils/retrieve';
-import config from '../config';
+import config from '../../config';
+import { loadSnapshot } from './utils/lsutil';
 ES6Promise.polyfill();
 
 ReactDom.render(
@@ -16,8 +17,14 @@ ReactDom.render(
 );
 
 try {
-  const state = JSON.parse(localStorage.currentState);
-  retrieveDirInfo(state.baseMap, state.curDir);
+  const state = loadSnapshot();
+  const { virtualBase, realBase, curDir} = state;
+  if(virtualBase && realBase && curDir) {
+    retrieveDirInfo({virtualBase, realBase}, curDir);
+  }
+  else {
+    retrieveDirInfo(config.defaultMap, '/');
+  }
 }
 catch (err){
   console.error(err);

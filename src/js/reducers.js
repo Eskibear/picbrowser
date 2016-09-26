@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { INITIALIZE, SWITCH_PIC } from './actions';
-import config from "../config";
+import config from "../../config";
+import { saveSnapshot } from './utils/lsutil';
 
 
 export const DEFAULT_STATE = {
@@ -14,7 +15,7 @@ export const DEFAULT_STATE = {
 function defaultReducer(state = DEFAULT_STATE, action) {
   switch (action.type) {
     case INITIALIZE:
-      localStorage.currentState = JSON.stringify(action.obj);
+      saveSnapshot(action.obj);
       return Object.assign({}, state,
         action.obj
       );

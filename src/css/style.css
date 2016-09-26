@@ -29,10 +29,6 @@ footer {
   /*border: solid blue 1px;*/
 }
 
-div {
-  /*border: solid blue 1px;*/
-}
-
 .no-padding {
   padding: 0;
 }
@@ -59,7 +55,7 @@ button#pic-selector{
 }
 
 ul.dropdown-menu, div.list-group {
-  max-height: 500px;
+  max-height: 700px;
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -74,7 +70,11 @@ div.pic-zone>div{
   width: 100%;
 }
 
-
+div.pic-zone>p{
+  text-align: center;
+  margin: 5%;
+  font-size: 150%;
+}
 
 button.control-btn{
   position:absolute;
