@@ -13,6 +13,7 @@ Simple web toy to view pictures in your local disk.
 * Visit `http://<hostname>:3000/` to view pics.
 
 ##Note
+* Server side entry point is `app.js`.
 * Modify `webpack.config.js` according to your personal requirements
 
 ###Screenshots:
